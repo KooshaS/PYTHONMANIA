@@ -1,4 +1,4 @@
-# Ref: https://stackabuse.com/image-recognition-in-python-with-tensorflow-and-keras/
+# Source: https://stackabuse.com/image-recognition-in-python-with-tensorflow-and-keras/
 
 import numpy
 from keras.models import Sequential
@@ -37,6 +37,17 @@ model.add(BatchNormalization())
 model.add(Conv2D(64, (3, 3), padding='same'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+
+model.add(Conv2D(64, (3, 3), padding='same'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+
+model.add(Conv2D(128, (3, 3), padding='same'))
+model.add(Activation('relu'))
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
