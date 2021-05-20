@@ -29,7 +29,7 @@ class_num = y_test.shape[1]
 model = Sequential()
 
 model.add(Conv2D(32, (3, 3), input_shape=X_train.shape[1:], padding='same'))
-print(X_train.shape[1])
+print(X_train.shape[1:])
 model.add(Activation('relu'))
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
@@ -50,5 +50,29 @@ model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(Activation('relu'))
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
+
+model.add(Flatten())
+model.add(Dropout(0.2))
+
+model.add(Dense(256, kernel_constraint=maxnorm(3)))
+model.add(Activation('relu'))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+
+model.add(Dense(128, kernel_constraint=maxnorm(3)))
+model.add(Activation('relu'))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+
+model.add(Dense(class_num))
+model.add(Activation('softmax'))
+
+epochs = 25
+optimizer = 'adam'
+
+model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
+print(model.summary())
+
+
 
 
