@@ -1,7 +1,4 @@
 # Source: https://datamadness.github.io/time-signal-CNN
-import matplotlib.pyplot as plt
-
-# Execute STFT on phase signal data and reduce the resulting 2D matrix
 
 import pandas as pd
 import tensorflow as tf
@@ -14,6 +11,7 @@ from skimage.measure import block_reduce
 import math
 
 
+# Execute STFT on phase signal data and reduce the resulting 2D matrix
 def signal_stft(phase_data,plot = False):
     fs = 40e6
     f, t, Zxx = signal.stft(phase_data, fs, nperseg=1999, boundry=None)
